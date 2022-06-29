@@ -5,6 +5,8 @@ import random
 LETTERS = ['R', 'Y', 'G', 'B', 'I', 'V']
 # define list length
 LEN = 4
+# max attempt
+MAX_ATTEMPT = 8
 
 
 def generate_code():
@@ -34,7 +36,21 @@ def validate_guess(guess):
     return result
 
 def color_count(guess, code):
-    pass
+    count = dict()
+    result = 0
+    # create a answer dictionary: {color: [codecount, guesscount]}
+    for i in code:
+        if i in count.keys():
+            count[i][0] += 1
+        else:
+            count[i] = [1, 0]
+    for j in guess:
+        if j in count.keys():
+            count[j][1] += 1
+    # calculate total correct color guessed
+    for k in count.values():
+        result += min(k)
+    return result
 
 def correct_pos_and_color(guess, code):
     pass
@@ -43,11 +59,23 @@ def check_guess(guess, code):
     pass
 
 def check_win_or_lose(guess, code, num_guesses):
-    pass
+    result = True
+    # check if results are matching
+    for i in range(LEN):
+        if guess[i] != code[i]:
+            result = False
+            break
+    # check if guesses within limit
+    if result == True and num_guesses <= MAX_ATTEMPT:
+        result = True
+    elif result == False and num_guesses > MAX_ATTEMPT:
+        result = False
+    else:
+        result = None
+    return result
 
 def get_win_percentage(wins, plays):
     pass
 
 def format_guess_stats(guess_stats):
     pass
-
