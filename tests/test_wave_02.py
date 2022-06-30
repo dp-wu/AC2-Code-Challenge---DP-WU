@@ -77,7 +77,6 @@ def test_check_win_exceeds_max_guesses():
     guess = ['R','B','B','V']
     code = ['R','B','B','V']
     num_guesses = 9
-
     #Act
     result = check_win_or_lose(guess, code, num_guesses)
 
@@ -85,7 +84,7 @@ def test_check_win_exceeds_max_guesses():
     assert result is False
 
 def test_check_win_game_ongoing():
-        #Arrange
+    #Arrange
     guess = ['R','B','B','V']
     code = ['R','B','B','I']
     num_guesses = 2
